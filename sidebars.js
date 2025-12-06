@@ -30,22 +30,25 @@ const sidebars = {
       label: 'Module 2: Simulation Environments',
       items: [
         'c5-gazebo-simulation',
-        // More chapters coming soon:
-        // 'c6-isaac-sim-integration',
-        // 'c7-unity-robotics',
-        // 'c8-vla-models',
+        'c6-isaac-sim',
+        'c7-unity-simulation',
+        'c8-advanced-simulation',
       ],
     },
-    // {
-    //   type: 'category',
-    //   label: 'Module 3: Edge Computing',
-    //   items: ['c9-edge-computing-jetson', 'c10-real-time-control', 'c11-sensor-fusion'],
-    // },
-    // {
-    //   type: 'category',
-    //   label: 'Module 4: Humanoid Integration',
-    //   items: ['c12-whole-body-control', 'c13-zmp-walking', 'c14-humanoid-integration'],
-    // },
+    {
+      type: 'category',
+      label: 'Module 3: Edge Computing and Embedded Systems',
+      items: [
+        'c9-real-time-control',
+        'c10-real-time-algorithms',
+        'c11-sensor-fusion',
+      ],
+    },
+    {
+      type: 'category',
+      label: 'Module 4: Humanoid Integration',
+      items: ['c12-whole-body-control', 'c13-zmp-walking', 'c14-humanoid-integration'],
+    },
   ],
 };
 

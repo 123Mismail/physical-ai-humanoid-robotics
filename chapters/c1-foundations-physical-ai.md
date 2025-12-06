@@ -1,7 +1,7 @@
 ---
 id: c1-foundations-physical-ai
-title: Chapter 1: Foundations of Physical AI
-sidebar_label: C1: Foundations of Physical AI
+title: "Chapter 1: Foundations of Physical AI"
+sidebar_label: "C1: Foundations of Physical AI"
 sidebar_position: 1
 ---
 
@@ -188,7 +188,7 @@ This example demonstrates how to create a ROS 2 publisher that generates and pub
 # Tested with ROS 2 Humble (verified via context7: 2025-12-06)
 # Library ID: /websites/docs_ros_org-en-humble-index.html
 # Description: Publishes simulated IMU sensor_msgs/Imu messages
-# Execution: ros2 run <package_name> imu_publisher
+# Execution: ros2 run PACKAGE_NAME imu_publisher
 
 import rclpy
 from rclpy.node import Node
@@ -269,7 +269,7 @@ This example shows how to create a subscriber that receives sensor data and proc
 # Tested with ROS 2 Humble (verified via context7: 2025-12-06)
 # Library ID: /websites/docs_ros_org-en-humble-index.html
 # Description: Subscribes to sensor_msgs/Imu and logs acceleration magnitude
-# Execution: ros2 run <package_name> imu_subscriber
+# Execution: ros2 run PACKAGE_NAME imu_subscriber
 
 import rclpy
 from rclpy.node import Node
@@ -332,7 +332,7 @@ if __name__ == '__main__':
 
 **Key Points:**
 - Subscribers register a callback function executed whenever a message arrives
-- Callbacks should execute quickly (<1ms) to avoid blocking other node operations
+- Callbacks should execute quickly (less than 1ms) to avoid blocking other node operations
 - Sensor data requires filtering/thresholding before use (e.g., impact detection threshold)
 - Message queues (QoS size=10) buffer data if processing is slower than publishing rate
 
@@ -446,7 +446,7 @@ With this grounding in sensor systems and message infrastructure, you are now pr
 
 ---
 
-**Next Chapter:** [Chapter 2: ROS 2 Humble Architecture](c2-ros2-architecture.md)
+**Next Chapter:** Chapter 2: ROS 2 Humble Architecture (Coming Soon)
 
 **References:**
 - ROS 2 Humble Documentation: https://docs.ros.org/en/humble/

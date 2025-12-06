@@ -76,11 +76,6 @@ const config = {
             position: 'left',
             label: 'Chapters',
           },
-          {
-            to: '/appendices',
-            label: 'Appendices',
-            position: 'left',
-          },
         ],
       },
       footer: {
@@ -90,12 +85,60 @@ const config = {
             title: 'Textbook',
             items: [
               {
-                label: 'Chapters',
-                to: '/chapters',
+                label: 'Chapter 1: Foundations of Physical AI',
+                to: '/chapters/c1-foundations-physical-ai',
               },
               {
-                label: 'Appendices',
-                to: '/appendices',
+                label: 'Chapter 2: ROS 2 Architecture',
+                to: '/chapters/c2-ros2-architecture',
+              },
+              {
+                label: 'Chapter 3: ROS 2 Actions and Services',
+                to: '/chapters/c3-ros2-actions',
+              },
+              {
+                label: 'Chapter 4: URDF Robot Description',
+                to: '/chapters/c4-urdf-robot-description',
+              },
+              {
+                label: 'Chapter 5: Gazebo Simulation',
+                to: '/chapters/c5-gazebo-simulation',
+              },
+              {
+                label: 'Chapter 6: NVIDIA Isaac Sim',
+                to: '/chapters/c6-isaac-sim',
+              },
+              {
+                label: 'Chapter 7: Unity Simulation for Humanoid Robotics',
+                to: '/chapters/c7-unity-simulation',
+              },
+              {
+                label: 'Chapter 8: Advanced Simulation Techniques',
+                to: '/chapters/c8-advanced-simulation',
+              },
+              {
+                label: 'Chapter 9: Real-Time Control Systems and Embedded Hardware',
+                to: '/chapters/c9-real-time-control',
+              },
+              {
+                label: 'Chapter 10: Real-Time Control Algorithms for Humanoid Robotics',
+                to: '/chapters/c10-real-time-algorithms',
+              },
+              {
+                label: 'Chapter 11: Sensor Fusion for Humanoid Robotics',
+                to: '/chapters/c11-sensor-fusion',
+              },
+              {
+                label: 'Chapter 12: Whole-Body Control for Humanoid Robotics',
+                to: '/chapters/c12-whole-body-control',
+              },
+              {
+                label: 'Chapter 13: ZMP Walking and Balance Control for Humanoid Robotics',
+                to: '/chapters/c13-zmp-walking',
+              },
+              {
+                label: 'Chapter 14: Humanoid Integration and Deployment',
+                to: '/chapters/c14-humanoid-integration',
               },
             ],
           },
@@ -122,7 +165,7 @@ const config = {
       prism: {
         theme: require('prism-react-renderer').themes.github,
         darkTheme: require('prism-react-renderer').themes.dracula,
-        additionalLanguages: ['python', 'bash', 'xml', 'yaml'],
+        additionalLanguages: ['python', 'bash', 'markup', 'yaml'],
       },
     }),
 };
