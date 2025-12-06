@@ -1,44 +1,37 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version Change: 1.0.0 → 1.1.0
-Amendment Type: MINOR (new sections, expanded principles, non-breaking)
+Version Change: 1.1.0 → 1.2.0
+Amendment Type: MINOR (new principle added - Principle V for textbook delivery platform)
 Amendment Date: 2025-12-06
 
 Modified Principles:
-  - Principle I: Added version strategy, fallback strategy, documentation source hierarchy
-  - Principle III: Added approval timeout policy (48hr reminder, 7-day pause)
-  - Principle IV: Added measurable quality criteria with examples
-  - Principle VI: Complete rewrite - replaced undefined <<call:...>> syntax with concrete Claude Code Task tool invocations
+  - Added Principle V: Textbook Delivery Platform Requirements (Docusaurus)
 
 Added Sections:
-  - Visual Content Standards (diagrams, figures, tables)
-  - Self-Review Checklist (11-item pre-approval checklist)
-  - Commit Message Format (structured conventions)
-  - Emergency Post-Approval Corrections (errata workflow)
-  - Equation Numbering (LaTeX label/reference syntax)
-
-Enhanced Sections:
-  - Mathematical Notation: Added equation numbering guidance
-  - Terminology: Added glossary update process (glossary-terms-temp.md workflow)
-  - Chapter Generation Flow: Integrated self-review checklist, clarified subagent delegation
+  - Principle V: Landing Environment, Authentication, Search, and Navigation Requirements
+  - 5.1 Landing Environment, Entry Flow, and Navigation Priority
+  - 5.2 Authentication & Access Control (Modern Standards)
+  - 5.3 Search Provisioning & Internationalization Requirements
+  - 5.4 Footer Architecture & Modular Navigation Contracts
 
 Templates Requiring Updates:
-  ⚠️ spec-template.md - may need visual content placeholders (diagrams, tables)
-  ⚠️ plan-template.md - should reference documentation source hierarchy
-  ⚠️ tasks-template.md - should include self-review checklist task
+  ⚠️ plan-template.md - should reference new platform requirements
+  ⚠️ spec-template.md - may need platform requirements section
+  ⚠️ tasks-template.md - should include platform implementation tasks
   ✅ phr-template.prompt.md - no changes required
 
 Follow-up TODOs:
-  1. Review and update affected templates if visual content sections needed
-  2. Create errata.md file in project root for post-approval corrections tracking
-  3. Validate self-review checklist during first chapter generation (c1)
+  1. Review and update affected templates to reference new platform requirements
+  2. Implement landing page at src/pages/index.js as required
+  3. Add authentication layer for /chapters/** routes
+  4. Configure search and i18n (Urdu support) as specified
 
 Rationale for Amendment:
-  - Address operational gaps (context7 fallback, subagent invocation model)
-  - Improve enforceability (measurable criteria, self-review checklist)
-  - Add missing standards (visual content essential for robotics textbook)
-  - Enhance workflow clarity (commit format, timeout policy, glossary process)
+  - Address platform delivery requirements for the digital textbook
+  - Add security measures (authentication) for chapter content
+  - Define landing page experience and navigation structure
+  - Establish search and internationalization requirements
 ==================
 -->
 
@@ -184,6 +177,124 @@ Content MUST be **concise, essential, and on-target**. Do not:
 
 **Implementation**: Before writing, confirm alignment with specified chapter outline. After writing, audit for unnecessary content.
 
+### VIII. Textbook Delivery Platform Requirements (Docusaurus)
+
+This Principle governs the delivery, presentation, access control, and internationalization of the digital textbook platform. All mandates apply to the production system, staging environments, and any derivative deployments.
+
+#### 8.1 Landing Environment, Entry Flow, and Navigation Priority
+
+**8.1.1 Mandate (Root-Level Experience)**
+
+The platform must implement a dedicated, non-documentation Landing Page at the root path (/) using src/pages/index.js.
+
+**Acceptance Criteria**
+
+AC-8.1-A: The Landing Page must introduce the textbook and present a single primary Call-to-Action labeled "Read the Book."
+
+AC-8.1-B: This CTA must redirect to the canonical documentation entry point:
+
+/chapters/c1-foundations
+
+AC-8.1-C: No documentation scaffolding (sidebar, breadcrumbs, doc layout) may appear on the Landing Page.
+
+AC-8.1-D: Navigation must prioritize access to the main textbook content and map cleanly into the site's global hierarchy.
+
+#### 8.2 Authentication & Access Control (Modern Standards)
+
+**8.2.1 Mandate (Documentation Protection)**
+
+All documentation routes under:
+
+/chapters/**
+
+must be logically and programmatically protected. Chapter content must never render to unauthenticated users.
+
+**8.2.2 Authentication Architecture**
+
+Authentication must be implemented using a modern, standards-compliant, security-audited approach.
+
+Primary Required Authentication Solution:
+
+Auth.js (NextAuth Core for SPAs using @auth/client)
+
+OIDC-compliant
+
+PKCE support
+
+Token refresh rotation
+
+Minimal vendor lock-in
+
+Maintains future extensibility (e.g., OAuth2 providers, email magic links)
+
+Permitted fallback options (only with documented justification):
+
+Auth0 SPA SDK
+
+Firebase Authentication (modular SDK)
+
+**Acceptance Criteria**
+
+AC-8.2-A: Authentication must use secure OIDC flows with PKCE.
+
+AC-8.2-B: The documentation layer must be wrapped in a React guard component, such as:
+
+<AuthGuard>{docs}</AuthGuard>
+
+AC-8.2-C: Unauthenticated users must be redirected to an authentication interface.
+
+AC-8.2-D: Authentication state must use secure, refreshable tokens (JWT or opaque).
+
+AC-8.2-E: Deep links (e.g., /chapters/c3/section2) must remain protected even when accessed directly by URL.
+
+#### 8.3 Search Provisioning & Internationalization Requirements
+
+**8.3.1 Mandate (Search Capability)**
+
+The platform must provide full-text search accessible from the global Navbar.
+
+**Acceptance Criteria — Search**
+
+AC-8.3-S1: Search must use an official or officially supported Docusaurus-integrated provider such as:
+
+Algolia DocSearch (preferred)
+
+A vetted full-text alternative
+
+AC-8.3-S2: All chapter pages under /chapters/** must be indexed.
+
+AC-8.3-S3: Search must function correctly under authenticated routing.
+
+**8.3.2 Mandate (Internationalization + RTL Compliance)**
+
+The system must support multilingual rendering and layout.
+
+**Acceptance Criteria — i18n**
+
+AC-8.3-I1: Supported target locale: Urdu (ur).
+
+AC-8.3-I2: Urdu rendering must use Right-to-Left (RTL) layout, with full mirroring of UI components where appropriate.
+
+AC-8.3-I3: The user must be able to switch language from the global navigation.
+
+AC-8.3-I4: All layouts must maintain readability, alignment, and structural integrity in both LTR and RTL modes.
+
+#### 8.4 Footer Architecture & Modular Navigation Contracts
+
+**8.4.1 Mandate (High-Level Footer Structure)**
+
+The Footer must reflect the macro-structure of the textbook rather than enumerating chapters.
+
+**Acceptance Criteria**
+
+AC-8.4-A: Footer links must display Module Titles only (e.g., "Module 1: The Robotic Nervous System").
+
+AC-8.4-B: Selecting a module must open the first chapter of that module.
+
+AC-8.4-C: No chapter-level lists may appear in the footer.
+
+AC-8.4-D: Footer behavior and layout must remain consistent with authenticated routing.
+
 ## Content Quality Standards
 
 ### Code Examples
@@ -299,4 +410,4 @@ Constitution version follows semantic versioning:
 ### Runtime Guidance
 For operational details on executing chapter generation commands, refer to `CLAUDE.md` and `.claude/commands/sp.*.md` files.
 
-**Version**: 1.1.0 | **Ratified**: 2025-12-05 | **Last Amended**: 2025-12-06
+**Version**: 1.2.0 | **Ratified**: 2025-12-05 | **Last Amended**: 2025-12-06
