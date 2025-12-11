@@ -47,9 +47,9 @@ const config = {
           // Path to chapters directory (Docusaurus docs root)
           path: 'chapters',
           routeBasePath: 'chapters',
-          // Math support temporarily disabled to fix Vercel build
-          remarkPlugins: [],
-          rehypePlugins: [],
+          // Math support for LaTeX rendering
+          remarkPlugins: [require('remark-math')],
+          rehypePlugins: [require('rehype-katex')],
         },
         theme: {
         },
