@@ -410,13 +410,13 @@ IMUs measure angular velocity, but control algorithms require absolute orientati
 **Final Equation (General Form):**
 
 $$
-q = \left[ \cos\left(\frac{\theta}{2}\right), \quad u_x \sin\left(\frac{\theta}{2}\right), \quad u_y \sin\left(\frac{\theta}{2}\right), \quad u_z \sin\left(\frac{\theta}{2}\right) \right] \tag{1.2}
+q = \left[ \cos\left(\frac{\theta}{2}\right), \quad u_x \sin\left(\frac{\theta}{2}\right), \quad u_y \sin\left(\frac{\theta}{2}\right), \quad u_z \sin\left(\frac{\theta}{2}\right) \right]
 $$
 
 **Unit Quaternion Constraint:**
 
 $$
-q_w^2 + q_x^2 + q_y^2 + q_z^2 = 1 \tag{1.3}
+q_w^2 + q_x^2 + q_y^2 + q_z^2 = 1
 $$
 
 **Dimensional Analysis:** All components dimensionless; constraint equation: $1 = 1$ ✓
