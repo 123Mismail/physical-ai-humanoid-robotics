@@ -394,7 +394,7 @@ IMUs measure angular velocity, but control algorithms require absolute orientati
 
 1. A 3D rotation by angle $\theta$ around axis $\mathbf{u} = (u_x, u_y, u_z)$ is represented as:
    $$
-   q = \begin{bmatrix} \cos(\theta/2) \\ u_x \sin(\theta/2) \\ u_y \sin(\theta/2) \\ u_z \sin(\theta/2) \end{bmatrix}
+   q = [\cos(\theta/2), u_x \sin(\theta/2), u_y \sin(\theta/2), u_z \sin(\theta/2)]
    $$
 
 2. For a rotation of 90° ($\pi/2$ radians) around the z-axis:
