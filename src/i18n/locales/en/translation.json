@@ -1,0 +1,100 @@
+{
+  "common": {
+    "welcome": "Welcome",
+    "home": "Home",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Log In",
+    "logout": "Log Out",
+    "register": "Register",
+    "submit": "Submit",
+    "cancel": "Cancel",
+    "save": "Save",
+    "edit": "Edit",
+    "delete": "Delete",
+    "search": "Search",
+    "settings": "Settings",
+    "profile": "Profile",
+    "dashboard": "Dashboard",
+    "more": "More",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "close": "Close",
+    "readBook": "Read the Book",
+    "chapters": "Chapters",
+    "modules": "Modules",
+    "lessons": "Lessons",
+    "exercises": "Exercises",
+    "resources": "Resources",
+    "help": "Help",
+    "faq": "FAQ",
+    "terms": "Terms",
+    "privacy": "Privacy",
+    "copyright": "Copyright"
+  },
+  "navigation": {
+    "mainMenu": "Main Menu",
+    "skipToContent": "Skip to Content",
+    "skipToNavigation": "Skip to Navigation",
+    "menu": "Menu",
+    "expand": "Expand",
+    "collapse": "Collapse"
+  },
+  "footer": {
+    "modulesTitle": "Course Modules",
+    "visitModule": "Visit {{module}} module",
+    "firstChapter": "First Chapter",
+    "moreModules": "More Modules"
+  },
+  "landing": {
+    "title": "Physical AI & Humanoid Robotics",
+    "subtitle": "A University-Level Textbook on Physical AI, ROS 2, and Humanoid Systems",
+    "cta": "Read the Book",
+    "introduction": "Welcome to the university-level textbook on Physical AI and Humanoid Robotics. This book provides students and researchers with deep understanding of humanoid systems, ROS 2, differential mechanisms, and implementations.",
+    "features": {
+      "title": "Book Features",
+      "feature1": "Robotics Systems with ROS 2 and Gazebo",
+      "feature2": "Sensor Fusion for Humanoid Robotics",
+      "feature3": "Advanced Control Algorithms",
+      "feature4": "Simulation and Implementation Exercises"
+    },
+    "modules": {
+      "title": "Course Modules",
+      "description": "Our course is divided into four comprehensive modules that teach students one step at a time"
+    }
+  },
+  "auth": {
+    "signInWithGoogle": "Sign in with Google",
+    "signInWithGitHub": "Sign in with GitHub",
+    "signInWithMicrosoft": "Sign in with Microsoft",
+    "signInMessage": "Sign in to access the textbook",
+    "signOutConfirm": "Are you sure you want to sign out?",
+    "accessDenied": "Access Denied",
+    "unauthorizedMessage": "You need to sign in to access this content"
+  },
+  "search": {
+    "placeholder": "Search in the textbook...",
+    "results": "Results",
+    "noResults": "No results found",
+    "searching": "Searching...",
+    "searchIn": "Search in",
+    "allChapters": "All Chapters"
+  },
+  "errors": {
+    "pageTitle": "Error",
+    "genericError": "An error occurred",
+    "notFound": "Page Not Found",
+    "notFoundMessage": "We couldn't find the page you were looking for",
+    "goHome": "Go to Home",
+    "retry": "Retry",
+    "contactSupport": "Contact Support"
+  },
+  "accessibility": {
+    "highContrast": "High Contrast",
+    "fontSize": "Font Size",
+    "increaseFontSize": "Increase Font Size",
+    "decreaseFontSize": "Decrease Font Size",
+    "resetFontSize": "Reset Font Size"
+  }
+}

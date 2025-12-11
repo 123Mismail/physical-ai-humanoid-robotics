@@ -17,13 +17,24 @@ const config = {
   projectName: 'humanoid-robotics-textbook', // Usually your repo name.
 
   onBrokenLinks: 'throw',
-  onBrokenMarkdownLinks: 'warn',
+  // Moved to markdown.hooks
+  markdown: {
+    hooks: {
+      onBrokenMarkdownLinks: 'warn',
+    },
+  },
 
   // Even if you don't use internalization, you can use this field to set useful
   // metadata like html lang.
   i18n: {
     defaultLocale: 'en',
-    locales: ['en'],
+    locales: ['en', 'ur'],
+    localeConfigs: {
+      ur: {
+        direction: 'rtl',
+        label: 'Urdu',
+      },
+    },
   },
 
   presets: [
@@ -41,12 +52,13 @@ const config = {
           rehypePlugins: [[require('rehype-katex'), {strict: false}]],
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css'),
         },
+        gtag: undefined,
+        googleTagManager: undefined,
+        sitemap: undefined,
       }),
     ],
   ],
-
   // KaTeX stylesheet for LaTeX math rendering
   stylesheets: [
     {
@@ -68,6 +80,8 @@ const config = {
         logo: {
           alt: 'Physical AI Logo',
           src: 'img/logo.svg',
+          href: '/chapters/c1-foundations-physical-ai', // Link to first chapter instead of root
+          target: '_self',
         },
         items: [
           {

@@ -208,3 +208,12 @@ Wait for consent; never auto-create ADRs. Group related decisions (stacks, authe
 
 ## Code Standards
 See `.specify/memory/constitution.md` for code quality, testing, performance, security, and architecture principles.
+
+## Active Technologies
+- JavaScript/TypeScript (Node.js 18+), React 18+ + Docusaurus 3.x, Auth.js (NextAuth), @docusaurus/theme-search-algolia, react-i18next (005-delivery-platform)
+- Client-side session management with secure tokens, configuration files (005-delivery-platform)
+- JavaScript/TypeScript (Node.js 18+), React 18+ with Docusaurus 3.x framework + Docusaurus 3.x, React 18+, Node.js 18+, @docusaurus/core, @docusaurus/module-type-aliases (001-simple-hero-homepage)
+- N/A (static site generation, no persistent storage needed) (001-simple-hero-homepage)
+
+## Recent Changes
+- 005-delivery-platform: Added JavaScript/TypeScript (Node.js 18+), React 18+ + Docusaurus 3.x, Auth.js (NextAuth), @docusaurus/theme-search-algolia, react-i18next

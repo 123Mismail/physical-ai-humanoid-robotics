@@ -1,37 +1,49 @@
 <!--
 SYNC IMPACT REPORT
 ==================
-Version Change: 1.1.0 → 1.2.0
-Amendment Type: MINOR (new principle added - Principle V for textbook delivery platform)
-Amendment Date: 2025-12-06
+Version Change: 1.6.0 → 1.7.0
+Amendment Type: MINOR (landing page requirements removed)
+Amendment Date: 2025-12-10
 
 Modified Principles:
-  - Added Principle V: Textbook Delivery Platform Requirements (Docusaurus)
+  - Updated Principle VIII: Textbook Delivery Platform Requirements - Removed landing page requirements (Section 8.1)
+  - Updated Principle IX: Modern UI/UX Design Standards (Futuristic Interface Requirements) - Removed landing page specific requirements
 
-Added Sections:
-  - Principle V: Landing Environment, Authentication, Search, and Navigation Requirements
-  - 5.1 Landing Environment, Entry Flow, and Navigation Priority
-  - 5.2 Authentication & Access Control (Modern Standards)
-  - 5.3 Search Provisioning & Internationalization Requirements
-  - 5.4 Footer Architecture & Modular Navigation Contracts
+Removed Sections:
+  - Principle VIII Section 8.1: Landing Environment, Entry Flow, and Navigation Priority - Landing page requirements removed
+  - Principle IX Section 9.5.1: Landing Page Hero requirements removed
+  - Principle IX Section 9.5.2: Landing Page Conversion Optimization requirements removed
+  - Enhanced implementation checklist in Section 9.6 updated to remove landing page specific items
 
 Templates Requiring Updates:
-  ⚠️ plan-template.md - should reference new platform requirements
-  ⚠️ spec-template.md - may need platform requirements section
-  ⚠️ tasks-template.md - should include platform implementation tasks
-  ✅ phr-template.prompt.md - no changes required
+  ✅ plan-template.md - updated to reflect removal of landing page requirements
+  ✅ spec-template.md - updated to remove landing page requirements
+  ✅ tasks-template.md - updated to remove landing page optimization tasks
+  ⚠️ phr-template.prompt.md - may need updates for landing page removal
 
 Follow-up TODOs:
-  1. Review and update affected templates to reference new platform requirements
-  2. Implement landing page at src/pages/index.js as required
-  3. Add authentication layer for /chapters/** routes
-  4. Configure search and i18n (Urdu support) as specified
+  1. Review and update affected templates to incorporate removal of landing page requirements
+  2. Update any dependent documentation referencing landing page design standards
 
 Rationale for Amendment:
-  - Address platform delivery requirements for the digital textbook
-  - Add security measures (authentication) for chapter content
-  - Define landing page experience and navigation structure
-  - Establish search and internationalization requirements
+  - Remove landing page requirements to simplify project scope
+  - Align with standard Docusaurus documentation experience
+  - Focus on core textbook content delivery rather than marketing landing page
+
+Previous Amendment Notes:
+  - (2025-12-09) Updated Principle VIII Section 8.1: Enhanced landing page requirements with conversion optimization best practices
+  - (2025-12-09) Updated Principle IX Section 9.5.1: Enhanced landing page hero section with improved content structure and visual hierarchy requirements
+  - (2025-12-09) Added Principle IX Section 9.5.2: New section for landing page conversion optimization requirements
+  - (2025-12-09) Updated Principle IX Section 9.6: Expanded implementation checklist with additional landing page verification items
+  - (2025-12-08) Removed RAG chatbot frontend and backend functionality from project scope
+  - (2025-12-07) Added Principle X: Modern UI/UX Design Standards (Futuristic Interface Requirements) (now VIII)
+  - (2025-12-07) Authentication requirements removed from Principle VI Section 8.2 (was 9.2)
+  - Docusaurus static site generation incompatible with server-side auth
+  - All chapter content now publicly accessible
+  - (2025-12-07) Search requirements removed from Principle VI Section 8.3 (was 9.3)
+  - Algolia credentials not available
+  - Search functionality removed from navbar and configuration
+  - (2025-12-06) Added Principle IX: Textbook Delivery Platform Requirements (now VIII)
 ==================
 -->
 
@@ -177,123 +189,322 @@ Content MUST be **concise, essential, and on-target**. Do not:
 
 **Implementation**: Before writing, confirm alignment with specified chapter outline. After writing, audit for unnecessary content.
 
+
 ### VIII. Textbook Delivery Platform Requirements (Docusaurus)
 
 This Principle governs the delivery, presentation, access control, and internationalization of the digital textbook platform. All mandates apply to the production system, staging environments, and any derivative deployments.
 
-#### 8.1 Landing Environment, Entry Flow, and Navigation Priority
 
-**8.1.1 Mandate (Root-Level Experience)**
+#### 8.1 Authentication & Access Control
 
-The platform must implement a dedicated, non-documentation Landing Page at the root path (/) using src/pages/index.js.
+**8.1.1 Status: REMOVED**
 
-**Acceptance Criteria**
+Authentication requirements have been removed from the platform. All documentation routes under `/chapters/**` are publicly accessible without authentication.
 
-AC-8.1-A: The Landing Page must introduce the textbook and present a single primary Call-to-Action labeled "Read the Book."
+**Rationale**: Docusaurus is a static site generator and does not support server-side authentication mechanisms. Implementing OIDC authentication would require significant architectural changes including adding a backend service, which is beyond the scope of the current platform capabilities.
 
-AC-8.1-B: This CTA must redirect to the canonical documentation entry point:
+#### 8.2 Internationalization Requirements
 
-/chapters/c1-foundations
+**8.2.1 ~~Mandate (Search Capability)~~ [REMOVED]**
 
-AC-8.1-C: No documentation scaffolding (sidebar, breadcrumbs, doc layout) may appear on the Landing Page.
+~~The platform must provide full-text search accessible from the global Navbar.~~
 
-AC-8.1-D: Navigation must prioritize access to the main textbook content and map cleanly into the site's global hierarchy.
+**Rationale**: Search functionality removed due to lack of Algolia credentials. Implementing search requires DocSearch approval or running a custom crawler, which is beyond current scope.
 
-#### 8.2 Authentication & Access Control (Modern Standards)
-
-**8.2.1 Mandate (Documentation Protection)**
-
-All documentation routes under:
-
-/chapters/**
-
-must be logically and programmatically protected. Chapter content must never render to unauthenticated users.
-
-**8.2.2 Authentication Architecture**
-
-Authentication must be implemented using a modern, standards-compliant, security-audited approach.
-
-Primary Required Authentication Solution:
-
-Auth.js (NextAuth Core for SPAs using @auth/client)
-
-OIDC-compliant
-
-PKCE support
-
-Token refresh rotation
-
-Minimal vendor lock-in
-
-Maintains future extensibility (e.g., OAuth2 providers, email magic links)
-
-Permitted fallback options (only with documented justification):
-
-Auth0 SPA SDK
-
-Firebase Authentication (modular SDK)
-
-**Acceptance Criteria**
-
-AC-8.2-A: Authentication must use secure OIDC flows with PKCE.
-
-AC-8.2-B: The documentation layer must be wrapped in a React guard component, such as:
-
-<AuthGuard>{docs}</AuthGuard>
-
-AC-8.2-C: Unauthenticated users must be redirected to an authentication interface.
-
-AC-8.2-D: Authentication state must use secure, refreshable tokens (JWT or opaque).
-
-AC-8.2-E: Deep links (e.g., /chapters/c3/section2) must remain protected even when accessed directly by URL.
-
-#### 8.3 Search Provisioning & Internationalization Requirements
-
-**8.3.1 Mandate (Search Capability)**
-
-The platform must provide full-text search accessible from the global Navbar.
-
-**Acceptance Criteria — Search**
-
-AC-8.3-S1: Search must use an official or officially supported Docusaurus-integrated provider such as:
-
-Algolia DocSearch (preferred)
-
-A vetted full-text alternative
-
-AC-8.3-S2: All chapter pages under /chapters/** must be indexed.
-
-AC-8.3-S3: Search must function correctly under authenticated routing.
-
-**8.3.2 Mandate (Internationalization + RTL Compliance)**
+**8.2.2 Mandate (Internationalization + RTL Compliance)**
 
 The system must support multilingual rendering and layout.
 
 **Acceptance Criteria — i18n**
 
-AC-8.3-I1: Supported target locale: Urdu (ur).
+AC-8.2-I1: Supported target locale: Urdu (ur).
 
-AC-8.3-I2: Urdu rendering must use Right-to-Left (RTL) layout, with full mirroring of UI components where appropriate.
+AC-8.2-I2: Urdu rendering must use Right-to-Left (RTL) layout, with full mirroring of UI components where appropriate.
 
-AC-8.3-I3: The user must be able to switch language from the global navigation.
+AC-8.2-I3: The user must be able to switch language from the global navigation.
 
-AC-8.3-I4: All layouts must maintain readability, alignment, and structural integrity in both LTR and RTL modes.
+AC-8.2-I4: All layouts must maintain readability, alignment, and structural integrity in both LTR and RTL modes.
 
-#### 8.4 Footer Architecture & Modular Navigation Contracts
+#### 8.3 Footer Architecture & Modular Navigation Contracts
 
-**8.4.1 Mandate (High-Level Footer Structure)**
+**8.3.1 Mandate (High-Level Footer Structure)**
 
 The Footer must reflect the macro-structure of the textbook rather than enumerating chapters.
 
 **Acceptance Criteria**
 
-AC-8.4-A: Footer links must display Module Titles only (e.g., "Module 1: The Robotic Nervous System").
+AC-8.3-A: Footer links must display Module Titles only (e.g., "Module 1: The Robotic Nervous System").
 
-AC-8.4-B: Selecting a module must open the first chapter of that module.
+AC-8.3-B: Selecting a module must open the first chapter of that module.
 
-AC-8.4-C: No chapter-level lists may appear in the footer.
+AC-8.3-C: No chapter-level lists may appear in the footer.
 
-AC-8.4-D: Footer behavior and layout must remain consistent with authenticated routing.
+AC-8.3-D: Footer behavior and layout must remain consistent across all pages.
+
+### IX. Modern UI/UX Design Standards (Futuristic Interface Requirements)
+
+This Principle establishes the visual design system, interaction patterns, and user experience requirements for the platform interface to reflect modern, cutting-edge aesthetics appropriate for a Physical AI & Robotics textbook.
+
+#### 9.1 Visual Design System
+
+**9.1.1 Color Palette & Theme**
+
+The platform MUST implement a futuristic, tech-forward color palette:
+
+**Primary Colors**:
+- **Cyber Blue**: `#00D9FF` - Primary brand color, high-tech aesthetic
+- **Electric Purple**: `#8B5CF6` - Accent color for CTAs and emphasis
+- **Neon Green**: `#10B981` - Success states, active indicators
+- **Deep Space**: `#0A0E27` - Primary background (dark theme)
+- **Soft White**: `#F8FAFC` - Text and backgrounds (light theme)
+
+**Gradients** (Required for UI elements):
+- Radial gradient: `radial-gradient(circle at 20% 50%, rgba(139, 92, 246, 0.3), transparent 50%)`
+- Linear gradient: `linear-gradient(135deg, #00D9FF 0%, #8B5CF6 100%)`
+- Mesh gradient backgrounds for depth and dimension
+
+**Typography**:
+- **Headings**: Inter, SF Pro Display, or system sans-serif with font-weight 700-900
+- **Body**: Inter, -apple-system, BlinkMacSystemFont with font-weight 400-500
+- **Code**: JetBrains Mono, Fira Code, or monospace with ligatures enabled
+- **Font Sizes**: Use fluid typography (clamp) for responsive scaling
+  - H1: `clamp(2.5rem, 5vw, 4.5rem)`
+  - H2: `clamp(2rem, 4vw, 3rem)`
+  - Body: `clamp(1rem, 1.5vw, 1.125rem)`
+
+**Spacing System**:
+- Use 8px base grid: 8px, 16px, 24px, 32px, 48px, 64px, 96px, 128px
+- Consistent spacing creates visual rhythm
+
+**9.1.2 Visual Effects & Depth**
+
+**Glassmorphism** (Required for cards, modals, navigation):
+- `background: rgba(255, 255, 255, 0.1)`
+- `backdrop-filter: blur(10px) saturate(180%)`
+- `border: 1px solid rgba(255, 255, 255, 0.18)`
+- Subtle shadow: `box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37)`
+
+**Neumorphism** (Optional for buttons, interactive elements):
+- Soft shadows creating raised/pressed appearance
+- `box-shadow: 12px 12px 24px #0a0b0f, -12px -12px 24px #1a1d2f`
+
+**Glow Effects** (Required for CTAs, hover states):
+- `box-shadow: 0 0 20px rgba(0, 217, 255, 0.6), 0 0 40px rgba(139, 92, 246, 0.3)`
+- Animated glow on hover: transition duration 300ms
+
+**9.1.3 Imagery & Graphics**
+
+
+**Icons**:
+- Outlined style with 2px stroke weight
+- Consistent 24px × 24px base size
+- Use Heroicons, Lucide, or Phosphor icon sets
+- Animated icons on hover (rotate, scale, color transition)
+
+#### 9.2 Micro-Interactions & Animation Principles
+
+**9.2.1 Motion Design Standards**
+
+All animations MUST follow these principles:
+
+**Timing Functions**:
+- Ease-out for entrances: `cubic-bezier(0.16, 1, 0.3, 1)`
+- Ease-in for exits: `cubic-bezier(0.7, 0, 0.84, 0)`
+- Spring physics for playful interactions: `cubic-bezier(0.34, 1.56, 0.64, 1)`
+
+**Duration**:
+- Quick (hover, focus): 150ms
+- Medium (page elements): 300ms
+- Slow (page transitions): 500ms
+- Never exceed 800ms for functional animations
+
+**Animation Types** (Required):
+
+1. **Button Interactions**:
+   ```css
+   /* Hover: scale up, glow, color shift */
+   transform: scale(1.05);
+   box-shadow: 0 0 20px currentColor;
+   transition: all 300ms cubic-bezier(0.34, 1.56, 0.64, 1);
+   ```
+
+2. **Card Hover**:
+   ```css
+   /* Lift and tilt on hover */
+   transform: translateY(-8px) rotateX(2deg);
+   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+   ```
+
+3. **Page Load**:
+   - Staggered fade-in for page elements (100ms delay between items)
+   - Slide-up animation: `translateY(20px)` → `translateY(0)`
+
+4. **Scroll Animations**:
+   - Intersection Observer for fade-in on scroll
+   - Parallax backgrounds (subtle, performance-conscious)
+
+**11.2.2 Loading States**
+
+**Skeleton Screens** (Required):
+- Animated gradient shimmer effect
+- Match layout of actual content
+- Use CSS animation, not JavaScript
+
+**Progress Indicators**:
+- Circular spinners with gradient stroke
+- Linear progress bars with animated gradient fill
+- Pulse animation for pending states
+
+#### 9.3 Responsive & Adaptive Design
+
+**9.3.1 Breakpoints**
+
+Use mobile-first approach with these breakpoints:
+- **Mobile**: 0-640px (1 column)
+- **Tablet**: 641px-1024px (2 columns)
+- **Desktop**: 1025px-1536px (3 columns, max)
+- **Large**: 1537px+ (constrained max-width: 1536px)
+
+**9.3.2 Adaptive Components**
+
+**Navigation**:
+- Mobile: Hamburger menu with slide-in drawer (backdrop blur)
+- Desktop: Horizontal navbar with dropdowns
+- Sticky header with blur background on scroll
+
+
+**Cards/Features**:
+- Mobile: Stack vertically, full-width
+- Tablet: 2-column grid with gap
+- Desktop: 3-column grid, equal heights
+
+**9.3.3 Touch & Gesture Support**
+
+- Minimum touch target: 44px × 44px (WCAG 2.5.5)
+- Swipe gestures for mobile carousels
+- Pinch-to-zoom disabled for UI, enabled for images/diagrams
+
+#### 9.4 Performance & Accessibility in Modern UI
+
+**9.4.1 Performance Requirements**
+
+**Core Web Vitals** (MUST meet):
+- **LCP** (Largest Contentful Paint): < 2.5s
+- **FID** (First Input Delay): < 100ms
+- **CLS** (Cumulative Layout Shift): < 0.1
+
+**Optimization Strategies**:
+- Lazy load images and heavy components (React.lazy, Intersection Observer)
+- Use `will-change` sparingly for animated elements
+- Prefer CSS transforms/opacity over layout-triggering properties
+- Reduce motion for users with `prefers-reduced-motion` preference
+
+**9.4.2 Accessibility (WCAG 2.1 AA Compliance)**
+
+**Color Contrast**:
+- Text on background: minimum 4.5:1 ratio
+- Large text (18pt+): minimum 3:1 ratio
+- Interactive elements: maintain contrast in all states
+
+**Keyboard Navigation**:
+- Visible focus indicators (2px solid outline, offset 2px)
+- Logical tab order
+- Skip links for main content
+- Keyboard shortcuts documented
+
+**Screen Readers**:
+- Semantic HTML (header, nav, main, section, footer)
+- ARIA labels for interactive elements
+- Alt text for all images (descriptive, not decorative)
+- Live regions for dynamic content
+
+**Motion Sensitivity**:
+```css
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+```
+
+**11.4.3 Dark Mode Support**
+
+**Requirements**:
+- Auto-detect system preference: `prefers-color-scheme`
+- Manual toggle switch in navbar
+- Smooth transition between themes (300ms)
+- Persist preference in localStorage
+
+**Color Adjustments**:
+- Dark theme: reduce saturation by 10-15%
+- Increase contrast for readability
+- Soften shadows, use lighter glows
+
+#### 9.5 Component-Specific Requirements
+
+**9.5.1 Feature Cards**
+
+**Structure**:
+- Card container: glassmorphism or solid with border
+- Icon: Top or left-aligned, 48px × 48px
+- Title: H3, bold, primary color
+- Description: 2-3 lines, medium weight
+- Hover effect: Lift, glow, subtle tilt
+
+**Grid Layout**:
+- Equal height cards using CSS Grid
+- Gap: 24px (mobile), 32px (desktop)
+- Responsive: 1/2/3 columns based on breakpoint
+
+**9.5.2 Call-to-Action Buttons**
+
+**Primary Button**:
+```css
+/* Gradient background, white text, glow effect */
+background: linear-gradient(135deg, #00D9FF, #8B5CF6);
+color: #FFFFFF;
+padding: 16px 32px;
+border-radius: 12px;
+font-weight: 600;
+box-shadow: 0 4px 16px rgba(139, 92, 246, 0.4);
+
+/* Hover: scale, enhanced glow */
+&:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 32px rgba(139, 92, 246, 0.6);
+}
+```
+
+**Secondary Button**:
+- Border: 2px solid current color
+- Background: transparent or subtle fill
+- Text: primary color
+- Hover: fill with color, text inverts
+
+#### 9.6 Implementation Checklist
+
+Before approving UI/UX design, verify:
+
+- [ ] Color palette uses specified CSS variables
+- [ ] Typography uses fluid scaling (clamp)
+- [ ] Glassmorphism applied to cards/overlays
+- [ ] All animations have proper easing functions
+- [ ] Loading states implemented (skeleton screens)
+- [ ] Responsive at all breakpoints (mobile, tablet, desktop)
+- [ ] Touch targets minimum 44px × 44px
+- [ ] Color contrast ratios meet WCAG 2.1 AA
+- [ ] Focus indicators visible and styled
+- [ ] Dark mode toggle implemented and functional
+- [ ] `prefers-reduced-motion` respected
+- [ ] Core Web Vitals targets met (LCP, FID, CLS)
+- [ ] Lazy loading for images and heavy components
+- [ ] Semantic HTML structure
+- [ ] ARIA labels for interactive elements
+- [ ] Performance requirements met (pages load under 3 seconds)
+- [ ] Optimized images with compression
+- [ ] Mobile-first responsive design
 
 ## Content Quality Standards
 
@@ -371,7 +582,7 @@ AC-8.4-D: Footer behavior and layout must remain consistent with authenticated r
   - Appendix work: `appendix(<ID>): <verb> <summary>`
     - Example: `appendix(g1): add 15 new terms from chapter 4`
   - Constitution/structure: `meta: <summary>`
-    - Example: `meta: update constitution to v1.1.0`
+    - Example: `meta: update constitution to v1.3.0`
   - Use present-tense verbs: add, update, fix, remove, refactor
 
 ## Governance
@@ -381,6 +592,7 @@ This constitution may be amended if:
 - Pedagogical requirements change (e.g., new learning objectives)
 - Technical stack updates require different documentation sources
 - Docusaurus version upgrade changes Markdown requirements
+- UI/UX standards require modernization
 
 Amendments require:
 1. Explicit proposal with rationale
@@ -410,4 +622,19 @@ Constitution version follows semantic versioning:
 ### Runtime Guidance
 For operational details on executing chapter generation commands, refer to `CLAUDE.md` and `.claude/commands/sp.*.md` files.
 
-**Version**: 1.2.0 | **Ratified**: 2025-12-05 | **Last Amended**: 2025-12-06
+**Version**: 1.7.0 | **Ratified**: 2025-12-05 | **Last Amended**: 2025-12-10
+
+**Amendment Notes**:
+- (2025-12-07) Added Principle VIII: RAG Chatbot Frontend (Chatkit UI) - New principle establishing technical architecture for the Chatkit UI integration
+- (2025-12-07) Renumbered Principle VIII to IX: Integrated RAG Chatbot System (The "Expert Instructor") - Backend RAG system principle moved to accommodate new frontend principle
+- (2025-12-07) Renumbered subsequent principles: Textbook Delivery Platform moved from Principle IX to X, Modern UI/UX Design Standards moved from Principle X to XI
+- (2025-12-09) Updated Principle VIII Section 8.1: Enhanced landing page requirements with conversion optimization best practices (AC-8.1-E, AC-8.1-F, AC-8.1-G)
+- (2025-12-09) Updated Principle IX Section 9.5.1: Enhanced landing page hero section with improved content structure and visual hierarchy requirements
+- (2025-12-09) Added Principle IX Section 9.5.2: New section for landing page conversion optimization requirements
+- (2025-12-09) Updated Principle IX Section 9.6: Expanded implementation checklist with additional landing page verification items
+- (2025-12-10) Removed Principle VIII Section 8.1: Landing Environment, Entry Flow, and Navigation Priority - Landing page requirements removed from project scope
+- (2025-12-10) Removed Principle IX Section 9.5.1: Landing Page Hero requirements removed
+- (2025-12-10) Removed Principle IX Section 9.5.2: Landing Page Conversion Optimization requirements removed
+- (2025-12-10) Updated Principle IX Section 9.6: Implementation checklist updated to remove landing page specific items
+- (2025-12-10) Updated Principle IX introduction: Removed landing page specific references
+- (2025-12-10) Updated various sections to remove hero section and landing page specific requirements throughout the constitution
