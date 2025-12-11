@@ -49,7 +49,7 @@ const config = {
           routeBasePath: 'chapters',
           // Enable math support
           remarkPlugins: [require('remark-math')],
-          rehypePlugins: [[require('rehype-katex'), {strict: false}]],
+          rehypePlugins: [require('rehype-katex')],
         },
         theme: {
         },
